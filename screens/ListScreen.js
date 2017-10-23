@@ -27,7 +27,7 @@ export default class ListScreen extends React.Component {
   }
 
   findMovies(query, page) {
-    API(query, page).then(data => {
+    API.search(query, page).then(data => {
       this.setState({
         totalResults: data.total_results,
         results: data.results,
@@ -45,7 +45,7 @@ export default class ListScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={{ paddingTop: 60, paddingLeft: 20, paddingRight: 20 }}>
+        <View style={{ paddingTop: 40, paddingLeft: 20, paddingRight: 20 }}>
           <Text style={{ fontSize: 28, fontWeight: 'bold', marginBottom: 10 }}>
             Search
           </Text>
@@ -79,7 +79,7 @@ export default class ListScreen extends React.Component {
               </Text>
             </View>
           : <View>
-              <Text style={{ fontSize: 18, textAlign: 'center', marginTop: 10 }}>
+              <Text style={{ fontSize: 18, textAlign: 'center', marginTop: 10, marginBottom: 10 }}>
                 Found: {this.state.totalResults} results in {this.state.totalPages} pages.
               </Text>
               <View>
@@ -87,7 +87,7 @@ export default class ListScreen extends React.Component {
                   style={{ padding: 10 }}
                   dataSource={this.state.dataSource}
                   renderRow={rowData => (
-                    <TouchableOpacity onPress={() => navigate('Detail', { movie: rowData })}>
+                    <TouchableOpacity onPress={() => navigate('Detail', { id: rowData.id })}>
                       <MovieListItem
                         title={rowData.title}
                         release_date={rowData.release_date}
@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     backgroundColor: '#fff',
+    paddingTop: 20,
   },
   search: {
     flex: 1,

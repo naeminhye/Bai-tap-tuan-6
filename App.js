@@ -10,9 +10,9 @@ const App = StackNavigator({
   },
   Detail: {
     screen:  DetailScreen,
-    navigationOptions: ({navigation}) => ({
-      title: `${navigation.state.params.movie.title}`,
-    }),
+    // navigationOptions: ({navigation}) => ({
+    //   title: `${navigation.state.params.movie.title}`,
+    // }),
   },
 }, 
 {
